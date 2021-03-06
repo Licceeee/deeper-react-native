@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { ApolloProvider } from '@apollo/client'
 import { client } from './Api';
 
@@ -9,13 +9,17 @@ import 'react-native-gesture-handler'
 
 import { StyleSheet, Text, View } from 'react-native';
 
-import HomeScreen from './components/screens/HomeScreen'
-import CardScreen from './components/screens/CardScreen'
-import CategoryScreen from './components/screens/CategoryScreen'
+import HomeScreen from './screens/HomeScreen'
+import CardScreen from './screens/CardScreen'
+import CategoryScreen from './screens/CategoryScreen'
 
 const Stack = createStackNavigator();
 
 export default function App() {
+
+
+  const [category, setCategory] = useState();
+
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
@@ -46,18 +50,19 @@ export default function App() {
                           title: 'DEEPER',
                         }}
           />
-          <Stack.Screen name="Card"
+
+          <Stack.Screen name="CategoryScreen">
+              {props => <CategoryScreen {...props} setCategory={setCategory}/>}
+          </Stack.Screen>
+          <Stack.Screen name="CardScreen" options={{title: 'Question',}}>
+              {props => <CardScreen {...props} category={category}/>}
+          </Stack.Screen>
+          {/* <Stack.Screen name="CardScreen"
                         component={CardScreen} 
                         options={{
                           title: 'Question',
                         }}
-          />
-           <Stack.Screen name="Category"
-                        component={CategoryScreen} 
-                        options={{
-                          title: 'Category',
-                        }}
-          />
+          /> */}
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>

@@ -1,18 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+import Icon from './Icon'
 
-const CategoryCard = ({ name, description }) => {
+const CategoryCard = ({ id, name, description, iconMobile, iconPackageNameMobile }) => {
 
     const navigation = useNavigation();
 
     return (
-        <View style={styles.cardContainer} onClick={() => navigation.navigate("Category")}>
+        <View style={styles.cardContainer} >
+              {/* onClick={() => navigation.navigate('Category', {  id: {id} })}> */}
             <View style={styles.categoryNameContainer}>
-                <Icon name="heart" size={20} style={styles.icon} />
+                <Icon IconPackageName={iconPackageNameMobile} iconName={iconMobile} />
                 <Text style={styles.h2}>
-                     {name}
+                     {name} - {id}
                 </Text>
             </View>
             <View style={styles.categoryNameContainer}>
@@ -21,11 +22,9 @@ const CategoryCard = ({ name, description }) => {
             <Button 
                 title="Start"
                 color="#D37861"
-                onPress={() => navigation.navigate('Category')}
+                onPress={() => navigation.navigate('CategoryScreen', {  id: {id} })}
                 accessibilityLabel="Start game with selected category"
             />
-            
-
         </View>
     );
 }
@@ -69,8 +68,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
     },
-    icon: {
-        color: '#D37861',
-        marginRight: 10,
-    }
 });

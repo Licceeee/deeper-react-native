@@ -17,6 +17,8 @@ const CATEGORIES = gql`
             id
             name
             description
+            iconMobile
+            iconPackageNameMobile
             questionSet {
                 id
                 content
@@ -25,5 +27,22 @@ const CATEGORIES = gql`
     }
 `;
 
+const CATEGORY = gql`
+    query {
+        categoryById(id: 1) {
+            name
+            description
+            iconMobile
+            iconPackageNameMobile
+            questionSet {
+                content
+            }
+        }
+    }
+`;
 
-export { client, CATEGORIES };
+
+
+
+
+export { client, CATEGORIES, CATEGORY };
