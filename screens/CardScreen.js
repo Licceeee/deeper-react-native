@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Icon from '../components/Icon'
+import { TapGestureHandler, RotationGestureHandler } from 'react-native-gesture-handler';
 
 const CardScreen = ({ category }) => {
 
@@ -24,21 +25,25 @@ const CardScreen = ({ category }) => {
     question && console.log(question)
 
     return (
-        <View style={styles.container}>
-            <View style={styles.category}>
-                <Icon IconPackageName={iconPackageNameMobile} 
-                            iconName={iconMobile} />
-                <Text style={styles.h2}>{name}</Text>     
-                <Text>{question && question}</Text>       
-                <Button 
-                        title="Start"
-                        color="#D37861"
-                        onPress={() => {
-                            setNextQuestion()
-                        }}
-                    />
-            </View>
-        </View>
+        <TapGestureHandler>
+            <RotationGestureHandler>
+                <View style={styles.container}>
+                    <View style={styles.category}>
+                        <Icon IconPackageName={iconPackageNameMobile} 
+                                    iconName={iconMobile} />
+                        <Text style={styles.h2}>{name}</Text>     
+                        <Text>{question && question}</Text>       
+                        <Button 
+                                title="Next"
+                                color="#D37861"
+                                onPress={() => {
+                                    setNextQuestion()
+                                }}
+                            />
+                    </View>
+                </View>
+            </RotationGestureHandler>
+        </TapGestureHandler>
     );
 }
 export default CardScreen;
@@ -49,15 +54,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#151B29',
         alignItems: 'center',
         justifyContent: 'center',
+        // textAlign: 'center',
     },
     category: {
         margin: 10,
         backgroundColor: '#fff',
+        width: 300,
         color: '#1C2437',
         padding: 80,
         borderRadius: 5,
         borderColor: '#151B29',
-        // outline: 
+        textAlign: 'center',
     },
     h2: {
         fontSize: 20,

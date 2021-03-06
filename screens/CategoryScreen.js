@@ -1,19 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { CATEGORY } from '../Api';
+import { CATEGORY, client } from '../Api';
 import Icon from '../components/Icon'
 import globalStyles from '../Style'
 // import { useRoute } from '@react-navigation/native';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { gql } from '@apollo/client';
 
 const CategoryScreen = ({ route, navigation, setCategory }) => {
     const { id } = route.params.id
 
     const { data, error, loading } = useQuery(CATEGORY, {variables: { id }});
 
-    const resolve = () => {
-        console.log(category)
-    }
+    data && console.log(data)
+
 
     const conditionalRender = () => {
         if (loading) {
@@ -27,7 +28,7 @@ const CategoryScreen = ({ route, navigation, setCategory }) => {
                 <View>
                     <Icon IconPackageName={data.categoryById.iconPackageNameMobile} 
                           iconName={data.categoryById.iconMobile} />
-                    <Text style={styles.h2}>CATEGORY {id}</Text>
+                    <Text style={styles.h2}>{data.categoryById.name}</Text>
                     <Text style={styles.description}>{data.categoryById.description}</Text>
                     <Text style={styles.description}>{data.categoryById.questionSet.length} questions</Text>
                     <Button 

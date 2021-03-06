@@ -28,8 +28,8 @@ const CATEGORIES = gql`
 `;
 
 const CATEGORY = gql`
-    query {
-        categoryById(id: 1) {
+    query GetCat($id: Int!) {
+        categoryById(id: $id) {
             name
             description
             iconMobile
@@ -40,8 +40,6 @@ const CATEGORY = gql`
         }
     }
 `;
-
-
 
 
 
