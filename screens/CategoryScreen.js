@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { CATEGORY } from '../Api';
 import Icon from '../components/Icon'
@@ -44,11 +44,11 @@ const CategoryScreen = ({ route, navigation, setCategory }) => {
 
     return (
 
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.category}>
                 {conditionalRender()}
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 

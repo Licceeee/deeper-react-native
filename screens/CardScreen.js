@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
 import Icon from '../components/Icon'
 import { TapGestureHandler, RotationGestureHandler } from 'react-native-gesture-handler';
 
@@ -27,7 +27,7 @@ const CardScreen = ({ category }) => {
     return (
         <TapGestureHandler>
             <RotationGestureHandler>
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <View style={styles.category}>
                         <Icon IconPackageName={iconPackageNameMobile} 
                                     iconName={iconMobile} />
@@ -41,7 +41,7 @@ const CardScreen = ({ category }) => {
                                 }}
                             />
                     </View>
-                </View>
+                </SafeAreaView>
             </RotationGestureHandler>
         </TapGestureHandler>
     );
