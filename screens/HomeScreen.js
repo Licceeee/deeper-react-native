@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   ScrollView,
   RefreshControl,
 } from "react-native";
@@ -28,6 +29,7 @@ const HomeScreen = ({ handleCategoryChoice }) => {
   }, []);
 
   return (
+    <SafeAreaView>
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
@@ -52,6 +54,7 @@ const HomeScreen = ({ handleCategoryChoice }) => {
             })}
         </View>
       </ScrollView>
+    </SafeAreaView>
   );
 };
 
