@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from './Icon'
 
@@ -8,24 +8,18 @@ const CategoryCard = ({ id, name, description, iconMobile, iconPackageNameMobile
     const navigation = useNavigation();
 
     return (
-        <View style={styles.cardContainer} >
-              {/* onClick={() => navigation.navigate('Category', {  id: {id} })}> */}
-            <View style={styles.categoryNameContainer}>
-                <Icon IconPackageName={iconPackageNameMobile} iconName={iconMobile} />
-                <Text style={styles.h2}>
-                     {name} - {id}
-                </Text>
-            </View>
-            <View style={styles.categoryNameContainer}>
-                <Text style={styles.description}>{description}</Text>
-            </View>           
-            <Button 
-                title="Start"
-                color="#D37861"
-                onPress={() => navigation.navigate('CategoryScreen', {  id: {id} })}
-                accessibilityLabel="Start game with selected category"
-            />
-        </View>
+        <TouchableOpacity style={styles.cardContainer} 
+            onPress={() => navigation.navigate('CategoryScreen', {  id: {id} })}>
+                <View style={styles.categoryNameContainer}>
+                    <Icon IconPackageName={iconPackageNameMobile} iconName={iconMobile} />
+                    <Text style={styles.h2}>
+                        {name}
+                    </Text>
+                </View>
+                <View style={styles.categoryNameContainer}>
+                    <Text style={styles.description}>{description}</Text>
+                </View>           
+        </TouchableOpacity>
     );
 }
 

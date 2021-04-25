@@ -1,45 +1,70 @@
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
-import { useQuery } from '@apollo/client';
-import { CATEGORIES } from '../Api';
-import globalStyles from '../Style'
-import CategoryCard from '../components/CategoryCard'
-
+import React, { useState, useCallback } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
+import { useQuery } from "@apollo/client";
+import { CATEGORIES } from "../Api";
+import globalStyles from "../Style";
+import CategoryCard from "../components/CategoryCard";
 
 const HomeScreen = ({ handleCategoryChoice }) => {
-    const { loading, error, data } = useQuery(CATEGORIES);
+  const { loading, error, data } = useQuery(CATEGORIES);
+  const [refreshing, setRefreshing] = useState(false);
 
-    return (
-        <SafeAreaView>
-            <ScrollView style={styles.scrollView}>
-                <View style={styles.container}>
+  const wait = (timeout) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, timeout);
+    });
+  };
 
-                    <Text style={globalStyles.h2}>- SELECT A CATEGORY -</Text>
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
 
-                    {loading && <Text>Loading...</Text>}
-                    {error && <Text>Some error occurred, please restart app</Text>}
+    wait(1000).then(() => setRefreshing(false));
+  }, []);
 
-                    {data && data.categories.map((category) => {
-                        return <CategoryCard key={category.id} {...category}
-                        handleCategoryChoice={handleCategoryChoice}/>
-                    })}
-                </View>
-            </ScrollView>
-        </SafeAreaView> 
-    );
-}
+  return (
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <View style={styles.container}>
+          <Text style={globalStyles.h2}>- SELECT A CATEGORY -</Text>
 
+          {loading && <Text>Loading...</Text>}
+          {error && <Text>Some error occurred, please restart app</Text>}
+
+          {data &&
+            data.categories.map((category) => {
+              return (
+                <CategoryCard
+                  key={category.id}
+                  {...category}
+                  handleCategoryChoice={handleCategoryChoice}
+                />
+              );
+            })}
+        </View>
+      </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#151B29',
-        alignItems: 'center',
-        // justifyContent: 'center',
-    },
-    scrollView: {
-        backgroundColor: '#151B29',
-      },
+  container: {
+    flex: 1,
+    backgroundColor: "#151B29",
+    alignItems: "center",
+    // justifyContent: 'center',
+  },
+  scrollView: {
+    backgroundColor: "#151B29",
+  },
 });
 
 export default HomeScreen;

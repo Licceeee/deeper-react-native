@@ -1,12 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { CATEGORY, client } from '../Api';
+import { CATEGORY } from '../Api';
 import Icon from '../components/Icon'
-import globalStyles from '../Style'
-// import { useRoute } from '@react-navigation/native';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { gql } from '@apollo/client';
 
 const CategoryScreen = ({ route, navigation, setCategory }) => {
     const { id } = route.params.id
