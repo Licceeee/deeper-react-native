@@ -1,13 +1,12 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-
 import { StyleSheet } from 'react-native';
-
 import Feather from 'react-native-vector-icons/Feather';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+import colors from "../config/colors";
 
 const Icon = ({ IconPackageName, iconName }) => {
 
@@ -28,8 +27,8 @@ export default Icon;
 
 const styles = StyleSheet.create({
     menuIcon: {
-        color: '#D37861',
-        marginRight: 10,
+        color: colors.action,
+        // marginRight: 10,
     },
 });
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 import Icon from './Icon'
+import colors from "../config/colors";
 
 const CategoryCard = ({ id, name, description, iconMobile, iconPackageNameMobile }) => {
 
@@ -25,33 +27,29 @@ const CategoryCard = ({ id, name, description, iconMobile, iconPackageNameMobile
 
 export default CategoryCard;
 
-
-const width_proportion = '80%';
-
 const styles = StyleSheet.create({
     cardContainer: {
         justifyContent: "space-evenly",
-        borderColor: '#fff',
+        borderColor: colors.white,
         borderWidth: 1,
 
-        backgroundColor: '#1C2437',
+        backgroundColor: "#1C2437",
         borderRadius: 2,
 
-        width: width_proportion,
-
+        width: '80%',
         marginVertical: 10,
         padding: 20,
         textAlign: 'center',
         
     },
     h2: {
-        color: "#fff",
+        color: colors.white,
         fontSize: 20,
         fontWeight: 'bold',
         textTransform: 'uppercase',
     },
     description: {
-        color: '#fff',
+        color: colors.white,
         padding: 10,
     },
     categoryNameContainer: {

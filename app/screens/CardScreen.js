@@ -1,8 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
-import Icon from '../components/Icon'
 import { TapGestureHandler, RotationGestureHandler } from 'react-native-gesture-handler';
+
+import Icon from '../components/Icon'
+import colors from "../config/colors";
 
 const CardScreen = ({ category }) => {
 
@@ -35,7 +37,7 @@ const CardScreen = ({ category }) => {
                         <Text>{question && question}</Text>       
                         <Button 
                                 title="Next"
-                                color="#D37861"
+                                color={colors.action}
                                 onPress={() => {
                                     setNextQuestion()
                                 }}
@@ -51,7 +53,7 @@ export default CardScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#151B29',
+        backgroundColor: colors.background,
         alignItems: 'center',
         justifyContent: 'center',
         // textAlign: 'center',
@@ -63,14 +65,14 @@ const styles = StyleSheet.create({
         color: '#1C2437',
         padding: 80,
         borderRadius: 5,
-        borderColor: '#151B29',
+        borderColor: colors.background,
         textAlign: 'center',
     },
     h2: {
         fontSize: 20,
     },
     description: {
-        color: '#151B29',
+        color: colors.background,
         padding: 10,
     },
 });

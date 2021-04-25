@@ -8,9 +8,11 @@ import {
   RefreshControl,
 } from "react-native";
 import { useQuery } from "@apollo/client";
-import { CATEGORIES } from "../Api";
-import globalStyles from "../Style";
+
 import CategoryCard from "../components/CategoryCard";
+import { CATEGORIES } from "../Api";
+import colors from "../config/colors";
+import globalStyles from "../Style";
 
 const HomeScreen = ({ handleCategoryChoice }) => {
   const { loading, error, data } = useQuery(CATEGORIES);
@@ -61,12 +63,12 @@ const HomeScreen = ({ handleCategoryChoice }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#151B29",
+    backgroundColor: colors.background,
     alignItems: "center",
     // justifyContent: 'center',
   },
   scrollView: {
-    backgroundColor: "#151B29",
+    backgroundColor: colors.background,
   },
 });
 

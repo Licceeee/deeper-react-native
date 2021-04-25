@@ -1,17 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ApolloProvider } from '@apollo/client'
-import { client } from './Api';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler'
-
 import { StyleSheet } from 'react-native';
 
-import HomeScreen from './screens/HomeScreen'
-import CardScreen from './screens/CardScreen'
-import CategoryScreen from './screens/CategoryScreen'
+import { client } from './app/Api';
+import HomeScreen from './app/screens/HomeScreen'
+import CardScreen from './app/screens/CardScreen'
+import CategoryScreen from './app/screens/CategoryScreen'
+import colors from "./app/config/colors";
 
 const Stack = createStackNavigator();
 
@@ -26,8 +25,8 @@ export default function App() {
         <Stack.Navigator initialRouteName="Home"
             screenOptions={{
               headerStyle: {
-                backgroundColor: '#151B29',
-                shadowColor: "#000",
+                backgroundColor: colors.background,
+                shadowColor: colors.black,
                 shadowOffset: {
                   width: 0,
                   height: 2,
@@ -36,7 +35,7 @@ export default function App() {
                 shadowRadius: 3,
 
               },
-              headerTintColor: "#FFF",
+              headerTintColor: colors.white,
               headerTitleStyle: {
                 fontWeight: 'bold',
                 fontSize: 22,
@@ -51,7 +50,7 @@ export default function App() {
                         }}
           />
 
-          <Stack.Screen name="CategoryScreen">
+          <Stack.Screen name="CategoryScreen"  options={{title: 'Category',}}>
               {props => <CategoryScreen {...props} setCategory={setCategory}/>}
           </Stack.Screen>
           <Stack.Screen name="CardScreen" options={{title: 'Question',}}>
@@ -68,7 +67,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
