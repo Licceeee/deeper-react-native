@@ -33,7 +33,7 @@ const CategoryScreen = ({ route, navigation, setCategory }) => {
             />
           </View>
 
-          <Text style={styles.h2}>{data.categoryById.name}</Text>
+          <Text style={styles.title}>{data.categoryById.name}</Text>
           <Text style={styles.description}>
             {data.categoryById.description}
           </Text>
@@ -94,8 +94,11 @@ const styles = StyleSheet.create({
 
     // justifyContent: "center",
   },
-  h2: {
+  title: {
     fontSize: 20,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    color: colors.background,
   },
   description: {
     color: colors.background,
@@ -103,7 +106,8 @@ const styles = StyleSheet.create({
   },
   iconPadding: {
       padding: 20,
-  }
+  },
+  
 });
 
 export default CategoryScreen;

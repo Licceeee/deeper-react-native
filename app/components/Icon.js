@@ -27,7 +27,7 @@ export default Icon;
 
 const styles = StyleSheet.create({
     menuIcon: {
-        color: colors.action,
+        color: colors.white,
         // marginRight: 10,
     },
 });
